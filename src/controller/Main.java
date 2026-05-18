@@ -1,13 +1,15 @@
 package controller;
 
+import model.Juego;
+import model.Tablero;
+
 public class Main {
 
 	public static void main(String[] args) {
 
-		System.out.println();
+		Juego juego = new Juego ();
+		juego.iniciarPartida(null);
 		
-		System.out.println();
-
 	}
 
 }
