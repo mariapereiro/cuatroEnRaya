@@ -1,13 +1,21 @@
 package controller;
 
+import model.Juego;
+import model.Jugador;
+
 public class Main {
 
 	public static void main(String[] args) {
 
-		System.out.println();
+		Jugador juagdor1= new Jugador();
+		Jugador juagdor2= new Jugador();
 		
-		System.out.println();
+		Juego juego=new Juego();
+		
+		juego.elegirTurno(juagdor1, juagdor2);
 
+		
+		
 	}
 
 }
