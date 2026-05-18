@@ -28,20 +28,19 @@ public class Juego {
 		int numeroAleatorio = rd.nextInt(2);
 
 		if(numeroAleatorio == 0) {
-			
-			elegirFicha(jugador1);
+			elegirFicha(jugador1, jugador2);
 			iniciarPartida(jugador1);
 			iniciarPartida(jugador2);
 			
 		}else {
-			elegirFicha(jugador2);
-			iniciarPartida(jugador2);
+			elegirFicha(jugador1, jugador2);
+ 			iniciarPartida(jugador2);
 			iniciarPartida(jugador1);
 
 		}
 	}
 	
-	public void elegirFicha(Jugador jugador) {
+	public void elegirFicha(Jugador jugador1, Jugador jugador2) {
 		int respuesta;
 		Scanner sc=new Scanner(System.in);
 		do {
@@ -53,9 +52,14 @@ public class Juego {
 		}while(respuesta < 1 || respuesta > 2);
 		
 		if (respuesta ==1) {
-			jugador.setFicha("X");;
+			jugador1.setFicha("X");
+			jugador2.setFicha("O");
+
+			
 		}else {
-			jugador.setFicha("O");;
+			jugador1.setFicha("O");
+			jugador2.setFicha("X");
+
 
 		}
  		

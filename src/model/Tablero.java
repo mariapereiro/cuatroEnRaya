@@ -12,7 +12,8 @@ public class Tablero {
 				if(tablero[i][x] == null) {
  					System.out.print("|_|");
 				}else {
-					System.out.println("|"+tablero[i][x]+"|");
+					System.out.print("|"+tablero[i][x]+"|");
+					
 				}
 				
 				
