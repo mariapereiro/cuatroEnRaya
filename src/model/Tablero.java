@@ -5,7 +5,6 @@ public class Tablero {
 	// ATRIBUTOS
 	private String tablero[][] = new String [6][7];
 	
-	
 	// METODOS
 	public void imprimirTablero() {
 		for(int i = 0 ; i < tablero.length; i++) {
@@ -19,6 +18,12 @@ public class Tablero {
 			}
 			System.out.println("");
  		}
+	}
+	
+	public void sustituir(int fila, int columna, Jugador jugador) {
+		if(tablero[fila][columna].equals("_|")) {
+			tablero[fila][columna] = jugador.getFicha();
+		}
 	}
 	
 	

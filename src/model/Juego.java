@@ -3,13 +3,13 @@ package model;
 import java.util.Random;
 import java.util.Scanner;
 
+import model.Tablero;
+
 public class Juego {
 
 	
 	
 	// ATRIBUTOS
-	private int fila;
-	private int columna;
 	private int turno;
 	private Tablero tablero;
 	private Jugador jugador1;
@@ -19,7 +19,11 @@ public class Juego {
 	public void elegirTurno (Jugador jugador1, Jugador jugador2) {
 		Random rd = new Random();
 		int numeroAleatorio = rd.nextInt(2);
+		
+		tablero.imprimirTablero();
+
 		if(numeroAleatorio == 0) {
+			
 			elegirFicha(jugador1);
 			iniciarPartida(jugador1);
 			iniciarPartida(jugador2);
@@ -49,10 +53,27 @@ public class Juego {
 			jugador.setFicha("O");;
 
 		}
-		
+ 		
 	}
 	
 	public void iniciarPartida(Jugador jugador) {
+		Scanner sc=new Scanner(System.in);
+		int fila;
+		int columna;
+			
 		tablero.imprimirTablero();
+		
+		do {
+			System.out.println("Dime un nº de fila:");
+			fila = sc.nextInt();
+		}while(fila < 1 && fila > 7);
+		
+		do {
+			System.out.println("Dime un nº de columna:");
+			columna = sc.nextInt();
+		}while(columna < 1 && columna > 6);
+		
+		 tablero.sustituir(fila, columna, jugador);
+		
 	}
 }
