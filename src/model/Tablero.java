@@ -17,8 +17,8 @@ public class Tablero {
 				
 				
 			}
-			System.out.println();
-		}
+			System.out.println("");
+ 		}
 	}
 	
 	

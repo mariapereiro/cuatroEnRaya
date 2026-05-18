@@ -7,8 +7,8 @@ public class Main {
 
 	public static void main(String[] args) {
 
-		Juego juego = new Juego ();
-		juego.iniciarPartida(null);
+		Tablero tablero=new Tablero();
+		tablero.imprimirTablero();
 		
 	}
 

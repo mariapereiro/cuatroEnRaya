@@ -1,9 +1,11 @@
 package model;
 
 import java.util.Random;
+import java.util.Scanner;
 
 public class Juego {
 
+	
 	
 	// ATRIBUTOS
 	private int fila;
@@ -18,16 +20,37 @@ public class Juego {
 		Random rd = new Random();
 		int numeroAleatorio = rd.nextInt(2);
 		if(numeroAleatorio == 0) {
+			elegirFicha(jugador1);
 			iniciarPartida(jugador1);
 			iniciarPartida(jugador2);
 			
 		}else {
+			elegirFicha(jugador2);
 			iniciarPartida(jugador2);
 			iniciarPartida(jugador1);
 
 		}
 	}
 	
+	public void elegirFicha(Jugador jugador) {
+		int respuesta;
+		Scanner sc=new Scanner(System.in);
+		do {
+			System.out.println("MENU");
+			System.out.println("1.- X");
+			System.out.println("2.- O");
+			System.out.println("Elige (1-2)");
+			respuesta=sc.nextInt();
+		}while(respuesta < 1 && respuesta > 2);
+		
+		if (respuesta ==1) {
+			jugador.setFicha("X");;
+		}else {
+			jugador.setFicha("O");;
+
+		}
+		
+	}
 	
 	public void iniciarPartida(Jugador jugador) {
 		tablero.imprimirTablero();
