@@ -15,12 +15,17 @@ public class Juego {
 	private Jugador jugador1;
 	private Jugador jugador2;
 	
+	// CONSTRUCTOR
+	public Juego() {
+		this.tablero = new Tablero();
+	}
+	
 	// METODOS
+	
+	
 	public void elegirTurno (Jugador jugador1, Jugador jugador2) {
 		Random rd = new Random();
 		int numeroAleatorio = rd.nextInt(2);
-		
-		tablero.imprimirTablero();
 
 		if(numeroAleatorio == 0) {
 			
@@ -45,7 +50,7 @@ public class Juego {
 			System.out.println("2.- O");
 			System.out.println("Elige (1-2)");
 			respuesta=sc.nextInt();
-		}while(respuesta < 1 && respuesta > 2);
+		}while(respuesta < 1 || respuesta > 2);
 		
 		if (respuesta ==1) {
 			jugador.setFicha("X");;
@@ -66,12 +71,12 @@ public class Juego {
 		do {
 			System.out.println("Dime un nº de fila:");
 			fila = sc.nextInt();
-		}while(fila < 1 && fila > 7);
+		}while(fila < 0 || fila > 6);
 		
 		do {
 			System.out.println("Dime un nº de columna:");
 			columna = sc.nextInt();
-		}while(columna < 1 && columna > 6);
+		}while(columna < 0 || columna > 5);
 		
 		 tablero.sustituir(fila, columna, jugador);
 		

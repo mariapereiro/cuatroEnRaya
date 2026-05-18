@@ -10,8 +10,9 @@ public class Tablero {
 		for(int i = 0 ; i < tablero.length; i++) {
 			for(int x = 0; x < tablero[i].length; x++) {
 				if(tablero[i][x] == null) {
-					System.out.print("|");
-					System.out.print("_|");
+ 					System.out.print("|_|");
+				}else {
+					System.out.println("|"+tablero[i][x]+"|");
 				}
 				
 				
@@ -21,7 +22,7 @@ public class Tablero {
 	}
 	
 	public void sustituir(int fila, int columna, Jugador jugador) {
-		if(tablero[fila][columna].equals("_|")) {
+		if(tablero[fila][columna] == null) {
 			tablero[fila][columna] = jugador.getFicha();
 		}
 	}
