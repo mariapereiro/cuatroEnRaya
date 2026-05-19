@@ -28,11 +28,19 @@ public class Juego {
 		int numeroAleatorio = rd.nextInt(2);
 
 		if(numeroAleatorio == 0) {
+			System.out.println("_______________________________________");
+			System.out.println("Empieza juagando "+jugador1.getNombre());
+			System.out.println("_______________________________________");
+			System.out.println();
 			elegirFicha(jugador1, jugador2);
 			iniciarPartida(jugador1);
 			iniciarPartida(jugador2);
 			
 		}else {
+			System.out.println("_______________________________________");
+			System.out.println("Empieza juagando "+jugador2.getNombre());
+			System.out.println("_______________________________________");
+			System.out.println();
 			elegirFicha(jugador1, jugador2);
  			iniciarPartida(jugador2);
 			iniciarPartida(jugador1);
@@ -69,7 +77,9 @@ public class Juego {
 		Scanner sc=new Scanner(System.in);
 		int fila;
 		int columna;
-			
+		System.out.println("============================");
+		System.out.println("| TURNO "+jugador.getNombre()+"          |");
+		System.out.println("============================");
 		tablero.imprimirTablero();
 		
 		do {
@@ -81,8 +91,9 @@ public class Juego {
 			System.out.println("Dime un nº de columna:");
 			columna = sc.nextInt();
 		}while(columna < 0 || columna > 5);
+		System.out.println();
 		
-		 tablero.sustituir(fila, columna, jugador);
+		tablero.sustituir(fila, columna, jugador);
 		
 	}
 }
