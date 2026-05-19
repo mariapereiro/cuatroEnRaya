@@ -83,17 +83,22 @@ public class Juego {
 		tablero.imprimirTablero();
 		
 		do {
-			System.out.println("Dime un nº de fila:");
-			fila = sc.nextInt();
-		}while(fila < 0 || fila > 6);
+			System.out.println("_____________________________________");
+			do {
+				System.out.println("Dime un nº de fila:");
+				fila = sc.nextInt();
+			}while(fila < 0 || fila > 5);
 		
-		do {
-			System.out.println("Dime un nº de columna:");
-			columna = sc.nextInt();
-		}while(columna < 0 || columna > 5);
-		System.out.println();
+			do {
+				System.out.println("Dime un nº de columna:");
+				columna = sc.nextInt();
+			}while(columna < 0 || columna > 6);
+			System.out.println();
+		}while(tablero.celdaOcupada(fila, columna));
 		
 		tablero.sustituir(fila, columna, jugador);
+		System.out.println();
+
 		
 	}
 }
