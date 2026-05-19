@@ -93,6 +93,10 @@ public class Juego {
 				System.out.println("Dime un nº de columna:");
 				columna = sc.nextInt();
 			}while(columna < 0 || columna > 6);
+			
+			if(tablero.celdaOcupada(fila, columna)) {
+				System.out.println("La celda ["+fila+","+columna+"] está ocupada. Vuelve a elegir");
+			}
 			System.out.println();
 		}while(tablero.celdaOcupada(fila, columna));
 		
