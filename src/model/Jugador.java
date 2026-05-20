@@ -9,6 +9,12 @@ public class Jugador {
 	private int partidasPerdidas;
 	private int partidasEmpatadas;
 	private String ficha;
+	
+	
+	public Jugador(String nombre) {
+		this.nombre=nombre;
+	}
+	
 	public String getNombre() {
 		return nombre;
 	}

@@ -15,16 +15,20 @@ public class Tablero {
 					System.out.print("|"+tablero[i][x]+"|");
 					
 				}
-				
-				
 			}
 			System.out.println("");
  		}
 	}
 	
 	public void sustituir(int fila, int columna, Jugador jugador) {
-		if(tablero[fila][columna] == null) {
-			tablero[fila][columna] = jugador.getFicha();
+		tablero[fila][columna] = jugador.getFicha();
+	}
+	
+	public boolean celdaOcupada(int fila, int columna) {
+		if(tablero[fila][columna] != null) {
+			return true; //Celda ocupada
+		}else {
+			return false; //Celda libre
 		}
 	}
 	

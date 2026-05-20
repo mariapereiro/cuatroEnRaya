@@ -7,8 +7,8 @@ public class Main {
 
 	public static void main(String[] args) {
 
-		Jugador juagdor1= new Jugador();
-		Jugador juagdor2= new Jugador();
+		Jugador juagdor1= new Jugador("Jugador 1");
+		Jugador juagdor2= new Jugador("Jugador 2");
 		
 		Juego juego=new Juego();
 		
