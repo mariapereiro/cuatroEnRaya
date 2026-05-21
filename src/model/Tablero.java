@@ -42,17 +42,9 @@ public class Tablero {
 		return -1;
  	}
 	
-	public void colocarFicha(int fila, int columna, Jugador j) {
-		this.tablero[fila][columna]=j.getFicha();
+	public void colocarFicha(int fila, int columna, Jugador jugador) {
+		this.tablero[fila][columna]=jugador.getFicha();
 	}
 
-	public boolean columnaOcupada(int columna) {
-		int fila = 5;
-		if (tablero[fila][columna] != null) { // Celda ocupada
- 			return true; 
-		} else {
-			return false; // Celda libre
-		}
-	}
 
 }

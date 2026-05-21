@@ -80,7 +80,7 @@ public class Juego {
 		int fila;
 		do {
 			System.out.println("============================");
-			System.out.println("| TURNO " + jugador.getFicha() + "          |");
+			System.out.println("| TURNO " + jugador.getNombre() + "          |");
 			System.out.println("============================");
 			tablero.imprimirTablero();
 
@@ -93,7 +93,7 @@ public class Juego {
 			} while (columna < 0 || columna > 6);
 
 			System.out.println();
-			// Fila = -1 significa que esa columna está llena por lo que tengo qu
+			// Fila = -1 significa que esa columna está llena por lo que tengo que
 			// seleccionar otra columna
 			fila = tablero.comprobarPosicion(columna, jugador);
 			
