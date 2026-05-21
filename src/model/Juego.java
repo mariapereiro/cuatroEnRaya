@@ -89,6 +89,7 @@ public class Juego {
 			do {
 				System.out.println("Dime un nº de columna:");
 				columna = sc.nextInt();
+				columna--;
 			} while (columna < 0 || columna > 6);
 
 			System.out.println();
