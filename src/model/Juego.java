@@ -5,6 +5,7 @@ import java.util.Scanner;
 
 import model.Tablero;
 
+
 public class Juego {
 
 	// ATRIBUTOS
@@ -12,6 +13,8 @@ public class Juego {
 	private Tablero tablero;
 	private Jugador jugador1;
 	private Jugador jugador2;
+	
+
 
 	// CONSTRUCTOR
 	public Juego() {
@@ -53,6 +56,13 @@ public class Juego {
 
 	public void elegirFicha(Jugador jugador1, Jugador jugador2) {
 		int respuesta;
+		String RED = "\u001B[91m";
+		String BLUE = "\u001B[94m";
+		
+		//Resetear el color
+		String ANSI_RESET = "\u001B[0m";
+
+
 		Scanner sc = new Scanner(System.in);
 		do {
 			System.out.println("MENU");
@@ -63,12 +73,12 @@ public class Juego {
 		} while (respuesta < 1 || respuesta > 2);
 
 		if (respuesta == 1) {
-			jugador1.setFicha("X");
-			jugador2.setFicha("O");
+			jugador1.setFicha(BLUE+"X" + ANSI_RESET);
+			jugador2.setFicha(RED +"O"+ ANSI_RESET);
 
 		} else {
-			jugador1.setFicha("O");
-			jugador2.setFicha("X");
+			jugador1.setFicha(RED +"O"+ ANSI_RESET);
+			jugador2.setFicha(BLUE+ "X" + ANSI_RESET);
 
 		}
 
