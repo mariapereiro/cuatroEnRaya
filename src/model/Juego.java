@@ -28,29 +28,30 @@ public class Juego {
 		int numeroAleatorio = rd.nextInt(2);
 
 		if (numeroAleatorio == 0) {
-			System.out.println("_______________________________________");
-			System.out.println("Empieza juagando " + jugador1.getNombre());
-			System.out.println("_______________________________________");
-			System.out.println();
 			elegirFicha(jugador1, jugador2);
-
-			do {
-				iniciarPartida(jugador1);
-				iniciarPartida(jugador2);
-			} while (!tablero.comprobarTablero());
-
+			turno(jugador1, jugador2);
+ 
 		} else {
-			System.out.println("_______________________________________");
-			System.out.println("Empieza juagando " + jugador2.getNombre());
-			System.out.println("_______________________________________");
-			System.out.println();
-			elegirFicha(jugador1, jugador2);
+			elegirFicha(jugador2, jugador1);
+			turno(jugador2, jugador1);
+ 
+		}
+	}
+	
+	public void turno(Jugador jugador1, Jugador jugador2) {
+		System.out.println("_______________________________________");
+		System.out.println("Empieza juagando " + jugador1.getNombre());
+		System.out.println("_______________________________________");
+		System.out.println();
 
-			do {
-				iniciarPartida(jugador2);
-				iniciarPartida(jugador1);
-			} while (!tablero.comprobarTablero());
-
+		do {
+			iniciarPartida(jugador1);
+			iniciarPartida(jugador2);
+		} while (!tablero.comprobarTablero());
+		
+		if(tablero.comprobarTablero()) {
+			System.out.println("EMPATE");
+			//Mostrar ESTADÍSTICAS USUARIO
 		}
 	}
 
