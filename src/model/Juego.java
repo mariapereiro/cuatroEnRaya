@@ -5,104 +5,116 @@ import java.util.Scanner;
 
 import model.Tablero;
 
+
 public class Juego {
 
-	
-	
 	// ATRIBUTOS
 	private int turno;
 	private Tablero tablero;
 	private Jugador jugador1;
 	private Jugador jugador2;
 	
+
+
 	// CONSTRUCTOR
 	public Juego() {
 		this.tablero = new Tablero();
 	}
-	
+
 	// METODOS
-	
-	
-	public void elegirTurno (Jugador jugador1, Jugador jugador2) {
+
+	public void elegirTurno(Jugador jugador1, Jugador jugador2) {
 		Random rd = new Random();
 		int numeroAleatorio = rd.nextInt(2);
 
-		if(numeroAleatorio == 0) {
+		if (numeroAleatorio == 0) {
 			System.out.println("_______________________________________");
-			System.out.println("Empieza juagando "+jugador1.getNombre());
-			System.out.println("_______________________________________");
-			System.out.println();
-			elegirFicha(jugador1, jugador2);
-			iniciarPartida(jugador1);
-			iniciarPartida(jugador2);
-			
-		}else {
-			System.out.println("_______________________________________");
-			System.out.println("Empieza juagando "+jugador2.getNombre());
+			System.out.println("Empieza juagando " + jugador1.getNombre());
 			System.out.println("_______________________________________");
 			System.out.println();
 			elegirFicha(jugador1, jugador2);
- 			iniciarPartida(jugador2);
-			iniciarPartida(jugador1);
+
+			do {
+				iniciarPartida(jugador1);
+				iniciarPartida(jugador2);
+			} while (!tablero.comprobarTablero());
+
+		} else {
+			System.out.println("_______________________________________");
+			System.out.println("Empieza juagando " + jugador2.getNombre());
+			System.out.println("_______________________________________");
+			System.out.println();
+			elegirFicha(jugador1, jugador2);
+
+			do {
+				iniciarPartida(jugador2);
+				iniciarPartida(jugador1);
+			} while (!tablero.comprobarTablero());
 
 		}
 	}
-	
+
 	public void elegirFicha(Jugador jugador1, Jugador jugador2) {
 		int respuesta;
-		Scanner sc=new Scanner(System.in);
+		String RED = "\u001B[91m";
+		String BLUE = "\u001B[94m";
+		
+		//Resetear el color
+		String ANSI_RESET = "\u001B[0m";
+
+
+		Scanner sc = new Scanner(System.in);
 		do {
 			System.out.println("MENU");
 			System.out.println("1.- X");
 			System.out.println("2.- O");
 			System.out.println("Elige (1-2)");
-			respuesta=sc.nextInt();
-		}while(respuesta < 1 || respuesta > 2);
-		
-		if (respuesta ==1) {
-			jugador1.setFicha("X");
-			jugador2.setFicha("O");
+			respuesta = sc.nextInt();
+		} while (respuesta < 1 || respuesta > 2);
 
-			
-		}else {
-			jugador1.setFicha("O");
-			jugador2.setFicha("X");
+		if (respuesta == 1) {
+			jugador1.setFicha(BLUE+"X" + ANSI_RESET);
+			jugador2.setFicha(RED +"O"+ ANSI_RESET);
 
+		} else {
+			jugador1.setFicha(RED +"O"+ ANSI_RESET);
+			jugador2.setFicha(BLUE+ "X" + ANSI_RESET);
 
 		}
- 		
+
 	}
-	
+
 	public void iniciarPartida(Jugador jugador) {
-		Scanner sc=new Scanner(System.in);
-		int fila;
+		Scanner sc = new Scanner(System.in);
 		int columna;
-		System.out.println("============================");
-		System.out.println("| TURNO "+jugador.getNombre()+"          |");
-		System.out.println("============================");
-		tablero.imprimirTablero();
-		
+		int fila;
 		do {
+			System.out.println("============================");
+			System.out.println("| TURNO " + jugador.getNombre() + "          |");
+			System.out.println("============================");
+			tablero.imprimirTablero();
+
 			System.out.println("_____________________________________");
-			do {
-				System.out.println("Dime un nº de fila:");
-				fila = sc.nextInt();
-			}while(fila < 0 || fila > 5);
-		
+
 			do {
 				System.out.println("Dime un nº de columna:");
 				columna = sc.nextInt();
-			}while(columna < 0 || columna > 6);
-			
-			if(tablero.celdaOcupada(fila, columna)) {
-				System.out.println("La celda ["+fila+","+columna+"] está ocupada. Vuelve a elegir");
-			}
+				columna--;
+			} while (columna < 0 || columna > 6);
+
 			System.out.println();
-		}while(tablero.celdaOcupada(fila, columna));
-		
-		tablero.sustituir(fila, columna, jugador);
+			// Fila = -1 significa que esa columna está llena por lo que tengo que
+			// seleccionar otra columna
+			fila = tablero.comprobarPosicion(columna, jugador);
+			
+			if (fila == -1) {
+				System.out.println("Columna llena, seleccione otra");
+				System.out.println("");
+			} else {
+				tablero.colocarFicha(fila, columna, jugador);
+			}
+		} while (fila == -1);
 		System.out.println();
 
-		
 	}
 }
