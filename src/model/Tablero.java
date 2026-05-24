@@ -20,7 +20,7 @@ public class Tablero {
 		}
 	}
 
-	public boolean comprobarTablero() {
+	public boolean empate() {
 		for (int i = 0; i < tablero.length; i++) {
 			for (int x = 0; x < tablero[i].length; x++) {
 				if (tablero[i][x] == null) {
@@ -30,6 +30,24 @@ public class Tablero {
 		}
 		return true;
 	}
+	
+	
+	//Comprobar Horizontal
+	public boolean horizontal(Jugador jugador) {
+		for(int i=0; i < tablero.length; i++) {
+			for(int x=0; x < tablero[i].length; x++) {
+				if(tablero[i][x] != null 
+					&& tablero[i][x].equals(tablero[i][x+1]) 
+					&& tablero[i][x].equals(tablero[i][x+2]) 
+					&& tablero[i][x].equals(tablero[i][x+3]) 
+					&& tablero[i][x].equals(jugador.getFicha())) {
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+	
 	
 
 	public int comprobarPosicion(int columna, Jugador jugador) {

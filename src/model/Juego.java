@@ -22,21 +22,6 @@ public class Juego {
 	}
 
 	// METODOS
-
-	public void elegirTurno(Jugador jugador1, Jugador jugador2) {
-		Random rd = new Random();
-		int numeroAleatorio = rd.nextInt(2);
-
-		if (numeroAleatorio == 0) {
-			elegirFicha(jugador1, jugador2);
-			turno(jugador1, jugador2);
- 
-		} else {
-			elegirFicha(jugador2, jugador1);
-			turno(jugador2, jugador1);
- 
-		}
-	}
 	
 	public void turno(Jugador jugador1, Jugador jugador2) {
 		System.out.println("_______________________________________");
@@ -44,14 +29,33 @@ public class Juego {
 		System.out.println("_______________________________________");
 		System.out.println();
 
+		elegirFicha(jugador1, jugador2);
+
 		do {
 			iniciarPartida(jugador1);
-			iniciarPartida(jugador2);
-		} while (!tablero.comprobarTablero());
+			
+			if(!tablero.empate() && !tablero.horizontal(jugador1)) {
+				iniciarPartida(jugador2);
+			}
+		} while (!tablero.empate() && !tablero.horizontal(jugador1) && !tablero.horizontal(jugador2));
 		
-		if(tablero.comprobarTablero()) {
+		if(tablero.empate()) {
+			tablero.imprimirTablero();
+			System.out.println();
 			System.out.println("EMPATE");
 			//Mostrar ESTADÍSTICAS USUARIO
+		}
+		if(tablero.horizontal(jugador1)) {
+			tablero.imprimirTablero();
+			System.out.println();
+			System.out.println("HA GANADO "+jugador1.getNombre()+"!!!");
+			
+		}
+		if(tablero.horizontal(jugador2)) {
+			tablero.imprimirTablero();
+			System.out.println();
+			System.out.println("HA GANADO "+jugador2.getNombre()+"!!!");
+
 		}
 	}
 
@@ -69,7 +73,7 @@ public class Juego {
 			System.out.println("MENU");
 			System.out.println("1.- X");
 			System.out.println("2.- O");
-			System.out.println("Elige (1-2)");
+			System.out.println("Elige FICHA (1-2)");
 			respuesta = sc.nextInt();
 		} while (respuesta < 1 || respuesta > 2);
 
@@ -83,6 +87,20 @@ public class Juego {
 
 		}
 
+	}
+	
+	
+	public void elegirTurno(Jugador jugador1, Jugador jugador2) {
+		Random rd = new Random();
+		int numeroAleatorio = rd.nextInt(2);
+
+		if (numeroAleatorio == 0) {
+			turno(jugador1, jugador2);
+ 
+		} else {
+			turno(jugador2, jugador1);
+ 
+		}
 	}
 
 	public void iniciarPartida(Jugador jugador) {
@@ -113,8 +131,10 @@ public class Juego {
 				System.out.println("");
 			} else {
 				tablero.colocarFicha(fila, columna, jugador);
+ 
 			}
 		} while (fila == -1);
+
 		System.out.println();
 
 	}
