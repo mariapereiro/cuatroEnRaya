@@ -120,8 +120,8 @@ public class Juego {
 			do {
 				System.out.println("Dime un nº de columna:");
 				columna = sc.nextInt();
-				columna--;
-			} while (columna < 0 || columna > 6);
+			} while (columna < 1 || columna > 7);
+			columna--;
 
 			System.out.println();
 			// Fila = -1 significa que esa columna está llena por lo que tengo que
