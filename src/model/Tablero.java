@@ -76,6 +76,20 @@ public class Tablero {
 		return false;
 	}
 	
+	//Comprobar diagonal izquierda
+		public boolean diagonalIzquierda(Jugador jugador) {
+			for(int i=0; i< tablero.length-3; i++) {
+				for(int x=0; x < tablero[i].length-3; x++) {
+					if(tablero[i][x] != null && tablero[i][x].equals(tablero[i+1][x-1]) 
+						&& tablero[i][x].equals(tablero[i+2][x-2]) && tablero[i][x].equals(tablero[i+3][x-3])
+						&& tablero[i][x].equals(jugador.getFicha())) {
+						return true;
+					}
+				}
+			}
+			
+			return false;
+		}
 	
 
 	public int comprobarPosicion(int columna, Jugador jugador) {
