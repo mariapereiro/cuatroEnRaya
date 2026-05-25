@@ -35,7 +35,7 @@ public class Tablero {
 	//Comprobar Horizontal
 	public boolean horizontal(Jugador jugador) {
 		for(int i=0; i < tablero.length; i++) { //fila
-			for(int x=0; x < tablero[i].length-3; x++) { //columna
+			for(int x=0; x < tablero[i].length-3; x++) { //columna -3 no te sales del tablero
 				if(tablero[i][x] != null && tablero[i][x].equals(tablero[i][x+1]) 
 					&& tablero[i][x].equals(tablero[i][x+2]) && tablero[i][x].equals(tablero[i][x+3]) 
 					&& tablero[i][x].equals(jugador.getFicha())) {
