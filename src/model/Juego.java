@@ -5,7 +5,6 @@ import java.util.Scanner;
 
 import model.Tablero;
 
-
 public class Juego {
 
 	// ATRIBUTOS
@@ -13,8 +12,6 @@ public class Juego {
 	private Tablero tablero;
 	private Jugador jugador1;
 	private Jugador jugador2;
-	
-
 
 	// CONSTRUCTOR
 	public Juego() {
@@ -22,46 +19,64 @@ public class Juego {
 	}
 
 	// METODOS
-
 	public void elegirTurno(Jugador jugador1, Jugador jugador2) {
 		Random rd = new Random();
 		int numeroAleatorio = rd.nextInt(2);
 
 		if (numeroAleatorio == 0) {
-			System.out.println("_______________________________________");
-			System.out.println("Empieza juagando " + jugador1.getNombre());
-			System.out.println("_______________________________________");
-			System.out.println();
-			elegirFicha(jugador1, jugador2);
-
-			do {
-				iniciarPartida(jugador1);
-				iniciarPartida(jugador2);
-			} while (!tablero.comprobarTablero());
-
-		} else {
-			System.out.println("_______________________________________");
-			System.out.println("Empieza juagando " + jugador2.getNombre());
-			System.out.println("_______________________________________");
-			System.out.println();
-			elegirFicha(jugador1, jugador2);
-
-			do {
-				iniciarPartida(jugador2);
-				iniciarPartida(jugador1);
-			} while (!tablero.comprobarTablero());
+			turno(jugador1, jugador2);
+		}else {
+			turno(jugador2, jugador1);
 
 		}
 	}
+	
+	public void turno(Jugador jugador1, Jugador jugador2) {
+		System.out.println("_______________________________________");
+		System.out.println("Empieza juagando " + jugador1.getNombre());
+		System.out.println("_______________________________________");
+		System.out.println();
+		elegirFicha(jugador1, jugador2);
+
+		do {
+			iniciarPartida(jugador1);
+			
+			if (!tablero.empate() && !tablero.horizontal(jugador1) && !tablero.vertical(jugador1)
+				&& !tablero.diagonalDere(jugador1) && !tablero.diagonalIzqui(jugador1)) {
+				iniciarPartida(jugador2);
+			}
+			
+		} while (!tablero.empate() && !tablero.horizontal(jugador1) && !tablero.horizontal(jugador2)
+				&& !tablero.vertical(jugador1) && !tablero.vertical(jugador2)
+				&& !tablero.diagonalDere(jugador1) && !tablero.diagonalDere(jugador2)
+				&& !tablero.diagonalIzqui(jugador1) && !tablero.diagonalIzqui(jugador2));
+		
+		if(tablero.empate()) {
+			tablero.imprimirTablero();
+			System.out.println();
+			System.out.println("EMPATE");
+		}
+		if(tablero.horizontal(jugador1) || tablero.vertical(jugador1) || tablero.diagonalDere(jugador1) || tablero.diagonalIzqui(jugador1)) {
+			tablero.imprimirTablero();
+			System.out.println();
+			System.out.println("Ha GANADO "+ jugador1.getNombre());
+		}
+		if(tablero.horizontal(jugador2) || tablero.vertical(jugador2) || tablero.diagonalDere(jugador2) || tablero.diagonalIzqui(jugador2)) {
+			tablero.imprimirTablero();
+			System.out.println();
+			System.out.println("Ha GANADO "+ jugador2.getNombre());
+		}
+
+	}
+
 
 	public void elegirFicha(Jugador jugador1, Jugador jugador2) {
 		int respuesta;
 		String RED = "\u001B[91m";
 		String BLUE = "\u001B[94m";
-		
-		//Resetear el color
-		String ANSI_RESET = "\u001B[0m";
 
+		// Resetear el color
+		String ANSI_RESET = "\u001B[0m";
 
 		Scanner sc = new Scanner(System.in);
 		do {
@@ -73,12 +88,12 @@ public class Juego {
 		} while (respuesta < 1 || respuesta > 2);
 
 		if (respuesta == 1) {
-			jugador1.setFicha(BLUE+"X" + ANSI_RESET);
-			jugador2.setFicha(RED +"O"+ ANSI_RESET);
+			jugador1.setFicha(BLUE + "X" + ANSI_RESET);
+			jugador2.setFicha(RED + "O" + ANSI_RESET);
 
 		} else {
-			jugador1.setFicha(RED +"O"+ ANSI_RESET);
-			jugador2.setFicha(BLUE+ "X" + ANSI_RESET);
+			jugador1.setFicha(RED + "O" + ANSI_RESET);
+			jugador2.setFicha(BLUE + "X" + ANSI_RESET);
 
 		}
 
@@ -99,14 +114,15 @@ public class Juego {
 			do {
 				System.out.println("Dime un nº de columna:");
 				columna = sc.nextInt();
-				columna--;
-			} while (columna < 0 || columna > 6);
+			} while (columna < 1 || columna > 7);
+			
+			columna--;
 
 			System.out.println();
 			// Fila = -1 significa que esa columna está llena por lo que tengo que
 			// seleccionar otra columna
 			fila = tablero.comprobarPosicion(columna, jugador);
-			
+
 			if (fila == -1) {
 				System.out.println("Columna llena, seleccione otra");
 				System.out.println("");
