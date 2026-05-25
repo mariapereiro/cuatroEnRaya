@@ -34,10 +34,12 @@ public class Juego {
 		do {
 			iniciarPartida(jugador1);
 			
-			if(!tablero.empate() && !tablero.horizontal(jugador1)) {
+			if(!tablero.empate() && !tablero.horizontal(jugador1) && !tablero.vertical(jugador1)) {
+				
 				iniciarPartida(jugador2);
 			}
-		} while (!tablero.empate() && !tablero.horizontal(jugador1) && !tablero.horizontal(jugador2));
+		} while (!tablero.empate() && !tablero.horizontal(jugador1) && !tablero.horizontal(jugador2) 
+				&& !tablero.vertical(jugador1) && !tablero.vertical(jugador2));
 		
 		if(tablero.empate()) {
 			tablero.imprimirTablero();
@@ -45,20 +47,20 @@ public class Juego {
 			System.out.println("EMPATE");
 			//Mostrar ESTADÍSTICAS USUARIO
 		}
-		if(tablero.horizontal(jugador1)) {
+		if(tablero.horizontal(jugador1) || tablero.vertical(jugador1)) {
 			tablero.imprimirTablero();
 			System.out.println();
 			System.out.println("HA GANADO "+jugador1.getNombre()+"!!!");
-			
 		}
-		if(tablero.horizontal(jugador2)) {
+		if(tablero.horizontal(jugador2) || tablero.vertical(jugador2)) {
 			tablero.imprimirTablero();
 			System.out.println();
 			System.out.println("HA GANADO "+jugador2.getNombre()+"!!!");
-
 		}
 	}
-
+	
+ 
+	
 	public void elegirFicha(Jugador jugador1, Jugador jugador2) {
 		int respuesta;
 		String RED = "\u001B[91m";

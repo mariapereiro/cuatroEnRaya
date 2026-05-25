@@ -4,7 +4,7 @@ public class Tablero {
 
 	// ATRIBUTOS
 	private String tablero[][] = new String[6][7];
-
+	
 	// METODOS
 	public void imprimirTablero() {
 		for (int i = 0; i < tablero.length; i++) {
@@ -34,8 +34,8 @@ public class Tablero {
 	
 	//Comprobar Horizontal
 	public boolean horizontal(Jugador jugador) {
-		for(int i=0; i < tablero.length; i++) {
-			for(int x=0; x < tablero[i].length; x++) {
+		for(int i=0; i < tablero.length; i++) { //fila
+			for(int x=0; x < tablero[i].length; x++) { //columna
 				if(tablero[i][x] != null 
 					&& tablero[i][x].equals(tablero[i][x+1]) 
 					&& tablero[i][x].equals(tablero[i][x+2]) 
@@ -47,6 +47,23 @@ public class Tablero {
 		}
 		return false;
 	}
+	
+	
+	//Comprobar Vertical
+		public boolean vertical(Jugador jugador) {
+			for(int i=0; i < tablero.length-3; i++) {
+				for(int x=0; x < tablero[i].length; x++) {
+					if(tablero[i][x] != null 
+						&& tablero[i][x].equals(tablero[i+1][x]) 
+						&& tablero[i][x].equals(tablero[i+2][x]) 
+						&& tablero[i][x].equals(tablero[i+3][x]) 
+						&& tablero[i][x].equals(jugador.getFicha())) {
+						return true;
+					}
+				}
+			}
+			return false;
+		}
 	
 	
 
