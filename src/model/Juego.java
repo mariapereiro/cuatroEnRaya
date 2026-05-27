@@ -47,8 +47,7 @@ public class Juego {
 			tablero.imprimirTablero();
 			System.out.println();
 			System.out.println("EMPATE");
-			//Mostrar ESTADÍSTICAS USUARIO
-		}
+ 		}
 		if(tablero.horizontal(jugador1) || tablero.vertical(jugador1) || tablero.diagonalDerecha(jugador1) || tablero.diagonalIzquierda(jugador1)) {
 			tablero.imprimirTablero();
 			System.out.println();
