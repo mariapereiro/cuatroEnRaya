@@ -1,39 +1,103 @@
 package model;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.sql.SQLException;
 import java.util.Scanner;
 
 import bbdd.Jugador;
 
 public class Inicio {
 
-	private Juego juego;
 	private Jugador jugador1;
 	private Jugador jugador2;
 
 	public Inicio() {
-		this.juego = new Juego();
-		this.jugador1 = new Jugador("Jugador 1");
-		this.jugador2 = new Jugador("Jugador 2");
+
+	}
+	
+	public static String sha256(String mensaje) {
+		
+		try {
+			
+			//Es una clase de Java
+			MessageDigest sha= MessageDigest.getInstance("SHA-256");
+			
+			//convierte a bytes
+			byte [] digest =sha.digest(mensaje.getBytes());
+			
+			StringBuilder hexString = new StringBuilder();
+			
+			for(byte b : digest) {
+				hexString.append(String.format("%02x", b));
+			}
+			
+			return hexString.toString();
+			
+		}catch (NoSuchAlgorithmException e) {
+			throw new RuntimeException(e);
+		}
+	}
+	
+	//Menu CREAR USUARIO
+	public void crearUsuario() throws SQLException{
+		Scanner sc=new Scanner(System.in);
+ 
+		System.out.println("╔═══════════════════════════╗");
+		System.out.println("| CREA TU USUARIO JUGADOR 1 |");
+		System.out.println("╚═══════════════════════════╝");
+		System.out.println();
+
+		System.out.println("Nombre de USUARIO");
+		String usuario=sc.nextLine();
+		
+		System.out.println();
+
+		System.out.println("Contraseña:");
+		String password=sc.nextLine();
+		sha256(password);
+		
+		jugador1=new Jugador(usuario, sha256(password));
+		jugador1.registrarse();
+		
+		System.out.println();
+		
+		System.out.println("╔═══════════════════════════╗");
+		System.out.println("| CREA TU USUARIO JUGADOR 2 |");
+		System.out.println("╚═══════════════════════════╝");
+		System.out.println();
+
+		System.out.println("Nombre de USUARIO");
+		String usuario2=sc.nextLine();
+		
+		System.out.println();
+
+		System.out.println("Contraseña:");
+		String password2=sc.nextLine();
+		
+		jugador2=new Jugador(usuario2, sha256(password2));
+		jugador2.registrarse();
 
 	}
 
-	public void menu() throws InterruptedException {
+	public void menu() throws InterruptedException, SQLException {
 		Scanner sc= new Scanner(System.in);
 		int respuesta;
 		
 		String GREEN = "\u001B[32m";
 		String ANSI_RESET = "\u001B[0m";
-
+		
 		do {
-			System.out.println("===============================================");
-			System.out.println("|               MENU PRINCIPAL                |");
-			System.out.println("|                                             |");
-			System.out.println("| 1.- Jugar partida                           |");
-			System.out.println("| 2.- Ver INSTRUCCIONES                       |");
-			System.out.println("| 3.- Mostrar RANKING                         |");
-			System.out.println("| 4.- Salir                                   |");
-			System.out.println("|                                             |");
-			System.out.println("===============================================");
+			System.out.println("╔══════════════════════════════════════════════╗");
+			System.out.println("║               MENU PRINCIPAL                 ║");
+			System.out.println("║                                              ║");
+			System.out.println("║ 1.- Jugar partida                            ║");
+			System.out.println("║ 2.- Ver INSTRUCCIONES                        ║");
+			System.out.println("║ 3.- Mostrar RANKING                          ║");
+			System.out.println("║ 4.- Salir                                    ║");
+			System.out.println("║                                              ║");
+			System.out.println("╚══════════════════════════════════════════════╝");
+			
 		
 			do{
 				System.out.println("Elige una OPCIÓN (1, 2, 3, 4)");
@@ -41,6 +105,8 @@ public class Inicio {
 			}while(respuesta < 1 || respuesta > 4);
 		
 			if(respuesta == 1) {
+				Juego juego = new Juego();
+				
 				juego.elegirTurno(jugador1, jugador2);
 				System.out.println("");
  			
@@ -81,6 +147,8 @@ public class Inicio {
 			
 				System.out.println("");
 			
+ 			}else if(respuesta == 3) {
+ 				jugador1.mostrarRank();
  			}
 		}while(respuesta !=4);
 		

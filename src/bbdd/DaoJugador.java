@@ -25,7 +25,7 @@ public class DaoJugador {
 	
 	
 	//Método INSERT 
-	public void insertUser1(Jugador jugador) throws SQLException {
+	public void insertUser(Jugador jugador) throws SQLException {
 		
 		String insertSQL="INSERT INTO jugadores (nombre, password) VALUES (?, ?)";
 		
@@ -52,7 +52,7 @@ public class DaoJugador {
 	public void selectRankin() throws SQLException{
 		
 		//Consulta estática
-		String selectRankingData ="SELECT * FROM usuarios ORDER BY partidasGanadas DESC";
+		String selectRankingData ="SELECT * FROM jugadores ORDER BY partidasGanadas DESC";
 		Statement statementSelect = conn.createStatement();
 		
 		ResultSet resultData=statementSelect.executeQuery(selectRankingData);
