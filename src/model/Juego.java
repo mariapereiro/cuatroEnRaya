@@ -3,6 +3,7 @@ package model;
 import java.util.Random;
 import java.util.Scanner;
 
+import bbdd.Jugador;
 import model.Tablero;
 
 

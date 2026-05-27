@@ -1,4 +1,4 @@
-package model;
+package bbdd;
 
 public class Jugador {
 
@@ -11,8 +11,9 @@ public class Jugador {
 	private String ficha;
 	
 	
-	public Jugador(String nombre) {
+	public Jugador(String nombre, String password) {
 		this.nombre=nombre;
+		this.password=password;
 	}
 	
 	public String getNombre() {

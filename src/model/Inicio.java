@@ -2,6 +2,8 @@ package model;
 
 import java.util.Scanner;
 
+import bbdd.Jugador;
+
 public class Inicio {
 
 	private Juego juego;

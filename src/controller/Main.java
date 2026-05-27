@@ -1,8 +1,8 @@
 package controller;
 
+import bbdd.Jugador;
 import model.Inicio;
 import model.Juego;
-import model.Jugador;
 
 public class Main {
 

@@ -1,5 +1,7 @@
 package model;
 
+import bbdd.Jugador;
+
 public class Tablero {
 
 	// ATRIBUTOS
