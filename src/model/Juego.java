@@ -64,7 +64,7 @@ public class Juego {
 			jugador1.setPartidasGanadas(jugador1.getPartidasGanadas() +1);
 			jugador1.aniadirPartidaGanada();
 			
-			jugador2.setPartidasPerdidas(jugador2.getPartidasPerdidas());
+			jugador2.setPartidasPerdidas(jugador2.getPartidasPerdidas() +1);
 			jugador2.aniadirPartidaPerdida();
 		}
 		if(tablero.horizontal(jugador2) || tablero.vertical(jugador2) || tablero.diagonalDerecha(jugador2) || tablero.diagonalIzquierda(jugador2)) {
@@ -75,7 +75,7 @@ public class Juego {
 			jugador2.setPartidasGanadas(jugador2.getPartidasGanadas() +1);
 			jugador2.aniadirPartidaGanada();
 			
-			jugador1.setPartidasPerdidas(jugador1.getPartidasPerdidas());
+			jugador1.setPartidasPerdidas(jugador1.getPartidasPerdidas()+1);
 			jugador1.aniadirPartidaPerdida();
 		}
 	}

@@ -25,6 +25,7 @@ public class DaoJugador {
 	
 	
 	//Método INSERT 
+	
 	public void insertUser(Jugador jugador) throws SQLException {
 		
 		String insertSQL="INSERT INTO jugadores (nombre, password) VALUES (?, ?)";
@@ -127,6 +128,7 @@ public class DaoJugador {
 	}
 	
 	//Partida empatada
+	
 	public void actuPartidaEmpatada(Jugador jugador) throws SQLException{
 			String updateSql="UPDATE jugadores SET partidasEmpatadas = ? WHERE nombre = ?";
 			
