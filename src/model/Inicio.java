@@ -16,7 +16,7 @@ public class Inicio {
 
 	}
 	
-	public static String sha256(String mensaje) {
+	public static String sha256(String password) {
 		
 		try {
 			
@@ -24,7 +24,7 @@ public class Inicio {
 			MessageDigest sha= MessageDigest.getInstance("SHA-256");
 			
 			//convierte a bytes
-			byte [] digest =sha.digest(mensaje.getBytes());
+			byte [] digest =sha.digest(password.getBytes());
 			
 			StringBuilder hexString = new StringBuilder();
 			
