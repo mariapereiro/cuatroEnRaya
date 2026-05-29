@@ -55,7 +55,6 @@ public class Inicio {
 
 		System.out.println("Contraseña:");
 		String password=sc.nextLine();
-		sha256(password);
 		
 		jugador1=new Jugador(usuario, sha256(password));
 		jugador1.registrarse();
