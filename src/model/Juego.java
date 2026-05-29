@@ -11,11 +11,7 @@ import model.Tablero;
 public class Juego {
 
 	// ATRIBUTOS
-	private int turno;
-	private Tablero tablero;
-	private Jugador jugador1;
-	private Jugador jugador2;
-	
+	private Tablero tablero;	
 
 
 	// CONSTRUCTOR

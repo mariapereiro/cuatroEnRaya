@@ -26,6 +26,7 @@ public class Inicio {
 			//convierte a bytes
 			byte [] digest =sha.digest(password.getBytes());
 			
+			
 			StringBuilder hexString = new StringBuilder();
 			
 			for(byte b : digest) {
