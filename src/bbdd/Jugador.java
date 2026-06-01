@@ -1,4 +1,6 @@
-package model;
+package bbdd;
+
+import java.sql.SQLException;
 
 public class Jugador {
 
@@ -11,8 +13,9 @@ public class Jugador {
 	private String ficha;
 	
 	
-	public Jugador(String nombre) {
+	public Jugador(String nombre, String password) {
 		this.nombre=nombre;
+		this.password=password;
 	}
 	
 	public String getNombre() {
@@ -52,6 +55,25 @@ public class Jugador {
 		this.ficha = ficha;
 	}
 	
+	//MÉTODOS
 	
+	public void registrarse() throws SQLException{
+		DaoJugador.getInstance().insertUser(this);
+	}
 	
+	public void mostrarRank() throws SQLException{
+		DaoJugador.getInstance().selectRankin();
+	}
+	
+	public void aniadirPartidaGanada() throws SQLException{
+		DaoJugador.getInstance().actuPartidasGanadas(this);
+	}
+	
+	public void aniadirPartidaPerdida() throws SQLException{
+		DaoJugador.getInstance().actuPartidaPerdidas(this);
+	}
+	
+	public void aniadirPartidaEmpatada() throws SQLException{
+		DaoJugador.getInstance().actuPartidaEmpatada(this);
+	}
 }

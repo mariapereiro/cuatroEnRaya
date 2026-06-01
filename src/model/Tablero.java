@@ -1,10 +1,12 @@
 package model;
 
+import bbdd.Jugador;
+
 public class Tablero {
 
 	// ATRIBUTOS
 	private String tablero[][] = new String[6][7];
-
+	
 	// METODOS
 	public void imprimirTablero() {
 		for (int i = 0; i < tablero.length; i++) {
@@ -31,66 +33,66 @@ public class Tablero {
 		return true;
 	}
 	
-	//Horizonta
+	
+	//Comprobar Horizontal
 	public boolean horizontal(Jugador jugador) {
-		for(int i=0; i < tablero.length; i++) {
-			for(int x=0; x < tablero[i].length-3; x++) {
-				if(tablero[i][x] != null && tablero[i][x].equals(tablero[i][x+1])
-					&& tablero[i][x].equals(tablero[i][x+2]) && tablero[i][x].equals(tablero[i][x+3])
+		for(int i=0; i < tablero.length; i++) { //fila
+			for(int x=0; x < tablero[i].length-3; x++) { //columna -3 no te sales del tablero
+				if(tablero[i][x] != null && tablero[i][x].equals(tablero[i][x+1]) 
+					&& tablero[i][x].equals(tablero[i][x+2]) && tablero[i][x].equals(tablero[i][x+3]) 
 					&& tablero[i][x].equals(jugador.getFicha())) {
 					return true;
 				}
 			}
 		}
-		
 		return false;
 	}
 	
 	
-	//Vertical
-	public boolean vertical(Jugador juagdor) {
-		for(int i=0; i < tablero.length - 3; i++) {
+	//Comprobar Vertical
+	public boolean vertical(Jugador jugador) {
+		for(int i=0; i < tablero.length-3; i++) {
 			for(int x=0; x < tablero[i].length; x++) {
-				if(tablero[i][x] != null && tablero[i][x].equals(tablero[i+1][x])  
-					&& tablero[i][x].equals(tablero[i+2][x]) && tablero[i][x].equals(tablero[i+3][x])
-					&& tablero[i][x].equals(juagdor.getFicha())) {
-					return true;
+				if(tablero[i][x] != null && tablero[i][x].equals(tablero[i+1][x]) 
+						&& tablero[i][x].equals(tablero[i+2][x]) && tablero[i][x].equals(tablero[i+3][x]) 
+						&& tablero[i][x].equals(jugador.getFicha())) {
+						return true;
+					}
 				}
 			}
+			return false;
 		}
-		
-		return false;
-	}
 	
-	
-	//Diagonal derecha
-	public boolean diagonalDere(Jugador jugador) {
-		for (int i =0; i < tablero.length-3; i++) {
+	//Comprobar diagonal derecha
+	public boolean diagonalDerecha(Jugador jugador) {
+		for(int i=0; i< tablero.length-3; i++) {
 			for(int x=0; x < tablero[i].length-3; x++) {
-				if(tablero[i][x] != null && tablero[i][x].equals(tablero[i+1][x+1])
+				if(tablero[i][x] != null && tablero[i][x].equals(tablero[i+1][x+1]) 
 					&& tablero[i][x].equals(tablero[i+2][x+2]) && tablero[i][x].equals(tablero[i+3][x+3])
 					&& tablero[i][x].equals(jugador.getFicha())) {
 					return true;
 				}
 			}
 		}
-		return false;
-	}
-	
-	//Diagonal izquierda
-	public boolean diagonalIzqui(Jugador jugador) {
-		for (int i= 0; i < tablero.length-3; i++) {
-			for(int x=0; x< tablero[i].length - 3; x++) {
-				if(tablero[i][x] != null && tablero[i][x].equals(tablero[i-1][x+1])
-					&& tablero[i][x].equals(tablero[i-2][x+2]) && tablero[i][x].equals(tablero[i-3][x+3])
-					&& tablero[i][x].equals(jugador.getFicha())) {
-					return true;
-				}
-			}
-		}
 		
 		return false;
 	}
+	
+	//Comprobar diagonal izquierda
+		public boolean diagonalIzquierda(Jugador jugador) {
+			for(int i=0; i< tablero.length-3; i++) {
+				for(int x=3; x < tablero[i].length; x++) {
+					if(tablero[i][x] != null && tablero[i][x].equals(tablero[i+1][x-1]) 
+						&& tablero[i][x].equals(tablero[i+2][x-2]) && tablero[i][x].equals(tablero[i+3][x-3])
+						&& tablero[i][x].equals(jugador.getFicha())) {
+						return true;
+					}
+				}
+			}
+			
+			return false;
+		}
+	
 
 	public int comprobarPosicion(int columna, Jugador jugador) {
 		for(int i =5; i >=0; i--) {
