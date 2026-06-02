@@ -2,6 +2,8 @@ package model;
 
 import java.sql.SQLException;
 
+import bbdd.DaoJugador;
+
 public class Jugador {
 
 	//ATRIBUTOS
