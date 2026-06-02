@@ -1,4 +1,4 @@
-package bbdd;
+package model;
 
 import java.sql.SQLException;
 

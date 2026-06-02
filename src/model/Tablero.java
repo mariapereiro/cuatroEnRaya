@@ -1,7 +1,5 @@
 package model;
 
-import bbdd.Jugador;
-
 public class Tablero {
 
 	// ATRIBUTOS
@@ -95,14 +93,13 @@ public class Tablero {
 	
 
 	public int comprobarPosicion(int columna, Jugador jugador) {
-		for (int i = 5; i >= 0; i --) {
- 			if(tablero[i][columna] == null) {
- 				return i;
- 			} 
- 		}
-		
+		for(int i =5; i >=0; i--) {
+			if(tablero[i][columna] == null) {
+				return i;
+			}
+		}
 		return -1;
- 	}
+	}
 	
 	public void colocarFicha(int fila, int columna, Jugador jugador) {
 		this.tablero[fila][columna]=jugador.getFicha();

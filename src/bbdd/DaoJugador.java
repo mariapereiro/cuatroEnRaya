@@ -2,6 +2,8 @@ package bbdd;
 
 import java.sql.*;
 
+import model.Jugador;
+
 public class DaoJugador {
 	
 	//ATRIBUTOS

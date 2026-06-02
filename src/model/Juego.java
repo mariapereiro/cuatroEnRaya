@@ -4,15 +4,12 @@ import java.sql.SQLException;
 import java.util.Random;
 import java.util.Scanner;
 
-import bbdd.Jugador;
 import model.Tablero;
-
 
 public class Juego {
 
 	// ATRIBUTOS
 	private Tablero tablero;	
-
 
 	// CONSTRUCTOR
 	public Juego() {
@@ -83,10 +80,9 @@ public class Juego {
 		int respuesta;
 		String RED = "\u001B[91m";
 		String BLUE = "\u001B[94m";
-		
-		//Resetear el color
-		String ANSI_RESET = "\u001B[0m";
 
+		// Resetear el color
+		String ANSI_RESET = "\u001B[0m";
 
 		Scanner sc = new Scanner(System.in);
 		do {
@@ -98,12 +94,12 @@ public class Juego {
 		} while (respuesta < 1 || respuesta > 2);
 
 		if (respuesta == 1) {
-			jugador1.setFicha(BLUE+"X" + ANSI_RESET);
-			jugador2.setFicha(RED +"O"+ ANSI_RESET);
+			jugador1.setFicha(BLUE + "X" + ANSI_RESET);
+			jugador2.setFicha(RED + "O" + ANSI_RESET);
 
 		} else {
-			jugador1.setFicha(RED +"O"+ ANSI_RESET);
-			jugador2.setFicha(BLUE+ "X" + ANSI_RESET);
+			jugador1.setFicha(RED + "O" + ANSI_RESET);
+			jugador2.setFicha(BLUE + "X" + ANSI_RESET);
 
 		}
 
@@ -145,7 +141,7 @@ public class Juego {
 			// Fila = -1 significa que esa columna está llena por lo que tengo que
 			// seleccionar otra columna
 			fila = tablero.comprobarPosicion(columna, jugador);
-			
+
 			if (fila == -1) {
 				System.out.println("Columna llena, seleccione otra");
 				System.out.println("");
