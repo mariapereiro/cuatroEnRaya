@@ -4,7 +4,6 @@ import java.sql.SQLException;
 import java.util.Random;
 import java.util.Scanner;
 
-import bbdd.Jugador;
 import model.Tablero;
 
 public class Juego {
